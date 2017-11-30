@@ -1,0 +1,1025 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update><sp_page action="INSERT_OR_UPDATE"><css/><draft>false</draft><id>acme_incidents</id><internal>false</internal><public>false</public><roles/><short_description/><sys_class_name>sp_page</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2017-11-02 16:55:57</sys_created_on><sys_id>b3527efbdb0203003c6ad360cf961965</sys_id><sys_mod_count>0</sys_mod_count><sys_name>acme_incidents</sys_name><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sp_page_b3527efbdb0203003c6ad360cf961965</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2017-11-02 16:55:57</sys_updated_on><title>Acme Incidents</title></sp_page><sys_translated_text action="delete_multiple" query="documentkey=b3527efbdb0203003c6ad360cf961965"/><sp_container action="INSERT_OR_UPDATE"><background_color/><background_image/><background_style>default</background_style><bootstrap_alt>false</bootstrap_alt><class_name/><container_class_name/><name>Acme Incidents - Container 1</name><order>1</order><sp_page display_value="acme_incidents">b3527efbdb0203003c6ad360cf961965</sp_page><subheader>false</subheader><sys_class_name>sp_container</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2017-11-02 19:49:38</sys_created_on><sys_id>082a1f7fdb4203003c6ad360cf9619d4</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Acme Incidents - Container 1</sys_name><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sp_container_082a1f7fdb4203003c6ad360cf9619d4</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2017-11-02 19:49:38</sys_updated_on><title/><width>container</width></sp_container><sp_row action="INSERT_OR_UPDATE"><class_name/><order>1</order><sp_column/><sp_container display_value="Acme Incidents - Container 1">082a1f7fdb4203003c6ad360cf9619d4</sp_container><sys_class_name>sp_row</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2017-11-02 19:49:52</sys_created_on><sys_id>272a17bfdb4203003c6ad360cf9619a3</sys_id><sys_mod_count>0</sys_mod_count><sys_name>1</sys_name><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sp_row_272a17bfdb4203003c6ad360cf9619a3</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2017-11-02 19:49:52</sys_updated_on></sp_row><sp_column action="INSERT_OR_UPDATE"><class_name/><order>1</order><size>12</size><size_lg/><size_sm/><size_xs/><sp_row display_value="1">272a17bfdb4203003c6ad360cf9619a3</sp_row><sys_class_name>sp_column</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2017-11-02 19:49:52</sys_created_on><sys_id>232a17bfdb4203003c6ad360cf9619a5</sys_id><sys_mod_count>0</sys_mod_count><sys_name>1</sys_name><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sp_column_232a17bfdb4203003c6ad360cf9619a5</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2017-11-02 19:49:52</sys_updated_on></sp_column><sp_instance action="INSERT_OR_UPDATE"><active>true</active><class_name/><color>default</color><css/><glyph/><id/><order>1</order><roles/><short_description/><size>md</size><sp_column display_value="1">232a17bfdb4203003c6ad360cf9619a5</sp_column><sp_widget display_value="My Table Selector">bfaa533fdb4203003c6ad360cf961929</sp_widget><sys_class_name>sp_instance</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2017-11-02 19:57:34</sys_created_on><sys_id>40fb9fffdb4203003c6ad360cf961948</sys_id><sys_mod_count>0</sys_mod_count><sys_name/><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sp_instance_40fb9fffdb4203003c6ad360cf961948</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2017-11-02 19:57:34</sys_updated_on><title/><url/><widget_parameters/></sp_instance><sys_translated_text action="delete_multiple" query="documentkey=40fb9fffdb4203003c6ad360cf961948"/><sp_widget action="INSERT_OR_UPDATE"><client_script><![CDATA[function() {
+  /* widget controller */
+  var c = this;
+	
+	c.data.tables = [
+		{label: 'Incident',
+		table:'incident'},
+		{label: 'Request',
+		table: 'sc_request'},
+		{label: 'Change Request',
+		table: 'change_request'}
+	]
+	
+	c.onClick = function () {
+		if (c.data.selected_table.table) {
+			emitTablename(c.data.selected_table.table);
+			console.log("In My Table Selector: selected table is = " + c.data.selected_table.table);
+		}
+	}
+	
+	function emitTablename(tablename) {
+		$rootScope.$emit("chosen_table_event", tablename);
+		console.log("In My Table Selector: emitting table name = " + tablename);
+	}
+}]]></client_script><controller_as>c</controller_as><css/><data_table>sp_instance</data_table><demo_data/><description/><docs/><field_list/><has_preview>false</has_preview><id>my_table_selector</id><internal>false</internal><link/><name>My Table Selector</name><option_schema/><public>false</public><roles/><script><![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]></script><servicenow>false</servicenow><sys_class_name>sp_widget</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2017-11-02 19:52:04</sys_created_on><sys_id>bfaa533fdb4203003c6ad360cf961929</sys_id><sys_mod_count>2</sys_mod_count><sys_name>My Table Selector</sys_name><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sp_widget_bfaa533fdb4203003c6ad360cf961929</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2017-11-02 20:06:33</sys_updated_on><template><![CDATA[<div>
+  <select id="table" name="table" ng-model="c.data.selected_table" ng-options="table.label for table in c.data.tables">
+    
+    <option value="">-- Choose a Table to Query --</option>
+  </select>
+  <button name="button" ng-click="c.onClick()" id="submitBtn">
+    Submit</button>
+</div>]]></template></sp_widget><sp_container action="INSERT_OR_UPDATE"><background_color/><background_image/><background_style>default</background_style><bootstrap_alt>false</bootstrap_alt><class_name/><container_class_name/><name>Acme Incidents - Container 2</name><order>2</order><sp_page display_value="acme_incidents">b3527efbdb0203003c6ad360cf961965</sp_page><subheader>false</subheader><sys_class_name>sp_container</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2017-11-02 16:55:57</sys_created_on><sys_id>7f527efbdb0203003c6ad360cf961966</sys_id><sys_mod_count>1</sys_mod_count><sys_name>Acme Incidents - Container 2</sys_name><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sp_container_7f527efbdb0203003c6ad360cf961966</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2017-11-02 19:49:38</sys_updated_on><title/><width>container</width></sp_container><sp_row action="INSERT_OR_UPDATE"><class_name/><order>1</order><sp_column/><sp_container display_value="Acme Incidents - Container 2">7f527efbdb0203003c6ad360cf961966</sp_container><sys_class_name>sp_row</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2017-11-02 16:56:37</sys_created_on><sys_id>65827efbdb0203003c6ad360cf961927</sys_id><sys_mod_count>0</sys_mod_count><sys_name>1</sys_name><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sp_row_65827efbdb0203003c6ad360cf961927</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2017-11-02 16:56:37</sys_updated_on></sp_row><sp_column action="INSERT_OR_UPDATE"><class_name/><order>1</order><size>12</size><size_lg/><size_sm/><size_xs/><sp_row display_value="1">65827efbdb0203003c6ad360cf961927</sp_row><sys_class_name>sp_column</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2017-11-02 16:56:37</sys_created_on><sys_id>2d827efbdb0203003c6ad360cf961928</sys_id><sys_mod_count>0</sys_mod_count><sys_name>1</sys_name><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sp_column_2d827efbdb0203003c6ad360cf961928</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2017-11-02 16:56:37</sys_updated_on></sp_column><sp_instance action="INSERT_OR_UPDATE"><active>true</active><class_name/><color>default</color><css/><glyph/><id/><order>0</order><roles/><short_description/><size>md</size><sp_column display_value="1">2d827efbdb0203003c6ad360cf961928</sp_column><sp_widget display_value="My Filter Breadcrumb">9d94c7f3db4203003c6ad360cf961925</sp_widget><sys_class_name>sp_instance</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2017-11-02 18:17:17</sys_created_on><sys_id>03f40377db4203003c6ad360cf96194a</sys_id><sys_mod_count>2</sys_mod_count><sys_name/><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sp_instance_03f40377db4203003c6ad360cf96194a</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2017-11-02 18:21:18</sys_updated_on><title/><url/><widget_parameters><![CDATA[{
+	"table": {
+		"value": "incident",
+		"displayValue": "incident"
+	},
+	"query": {
+		"value": "",
+		"displayValue": ""
+	},
+	"enable_filter": {
+		"value": "true",
+		"displayValue": "true"
+	}
+}]]></widget_parameters></sp_instance><sys_translated_text action="delete_multiple" query="documentkey=03f40377db4203003c6ad360cf96194a"/><sp_widget action="INSERT_OR_UPDATE"><client_script><![CDATA[function ($scope, $timeout){
+	var c = this;
+	var eventNames = {
+		setBreadcrumbs: 'widget-filter-breadcrumbs.setBreadcrumbs'
+	};
+
+	$scope.adjustFilter = function(breadcrumb, remove){
+		var newQuery = remove ? breadcrumb.ifRemoved : breadcrumb.value;
+		$scope.$emit('widget-filter-breadcrumbs.queryModified', newQuery);
+	}
+
+	$scope.$on(eventNames.setBreadcrumbs, function(e, data, newQuery){
+		$scope.data = data;
+		$scope.$broadcast("snfilter:initialize_query", massageEncodedQuery(newQuery));
+	});
+
+	$scope.clickFilter = function() {
+		$scope.showFilter = !$scope.showFilter;
+	}
+
+	$scope.showFilter = false;
+	$scope.$on("snbreadcrumbs:toggle_filter", function(e) {
+		e.stopPropagation();
+		e.preventDefault();
+		$scope.showFilter = false;
+	});
+
+	$scope.$on("snfilter:update_query", function(e, query) {
+		e.stopPropagation();
+		e.preventDefault();
+		$scope.$emit('widget-filter-breadcrumbs.queryModified', massageEncodedQuery(query));
+		$scope.showFilter = false;
+		
+	});
+
+	
+	// Receive chosen Table from Table Selector Widget
+	$rootScope.$on("chosen_table_event", function (event, data) {
+		console.log("In my Filter Breadcrumb:  chosen table received is = " + data);
+		//c.data.tableChosen = true;
+		c.data.table = data;
+		c.server.update();
+	});
+	
+}
+
+	function massageEncodedQuery(query) {
+		var result = (query) ? query.replace(/CONTAINS/g, "LIKE").replace(/DOES NOT CONTAIN/g, "NOT LIKE") : query;
+		emitQuery(result);
+		return result;
+	}
+
+	function emitQuery(query) {
+		$rootScope.$emit("query_text_event", query);
+	}]]></client_script><controller_as>c</controller_as><css>.breadcrumbs {
+  margin-left: 9px;
+  margin-bottom: 3px;
+}
+
+.icon-filter {
+  font-size: 20px;
+  text-decoration: inherit; /* no underline */
+}
+
+.ng-filter-widget {
+  .modal {
+    .manage-filters-button {
+      top: 15px;
+    }
+
+    .input-group-radio {
+      input {
+        margin-left: 0;
+      }
+    }
+
+    .input-group-transparent {
+      position: relative;
+
+      .input-group-addon-transparent {
+        position: absolute;
+        font-size: 18px;
+        top: 2px;
+        left: 8px;
+      }
+
+      input {
+        border-radius: 9999px;
+        padding-left: 28px;
+      }
+    }
+
+    ul {
+      padding: 0 5px 10px;
+
+      li {
+        button {
+          background-color: inherit;
+        }
+
+        a {
+          width: 100%;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          display: block;
+          padding: 7px 20px;
+          text-decoration: none;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+</css><data_table>sp_instance</data_table><demo_data/><description/><docs/><field_list/><has_preview>false</has_preview><id>my_filter_breadcrumb</id><internal>false</internal><link/><name>My Filter Breadcrumb</name><option_schema>[{"hint":"Table to be used to generate breadcrumbs","name":"table","label":"Table","type":"string"},{"name":"query","label":"Query","type":"string"},{"hint":"If enabled, a filter button prompt will be added to the breadcrumb list","name":"enable_filter","default_value":"false","label":"Enable Filter","type":"boolean"}]</option_schema><public>true</public><roles/><script><![CDATA[(function() {
+	var table = options.table || input.table;
+	var query = options.query || input.query;
+	data.breadcrumbs = $sp.getFilterBreadcrumbs(table, query, null);
+	data.enable_filter = input.enable_filter || options.enable_filter == true || options.enable_filter == "true";
+
+	if (data.enable_filter)
+		data.filterWidget = $sp.getWidget('sn-desktop-filter', {
+			table: table
+		});
+
+})();]]></script><servicenow>false</servicenow><sys_class_name>sp_widget</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2017-11-02 18:15:31</sys_created_on><sys_id>9d94c7f3db4203003c6ad360cf961925</sys_id><sys_mod_count>7</sys_mod_count><sys_name>My Filter Breadcrumb</sys_name><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sp_widget_9d94c7f3db4203003c6ad360cf961925</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2017-11-02 20:23:11</sys_updated_on><template><![CDATA[<div class="breadcrumbs">
+  <button type="button"
+          role="button"
+          ng-show="data.enable_filter"
+          ng-click="clickFilter()"
+          title="Show / hide filter"
+          class="icon-filter btn btn-link"
+          tabindex="0"
+          data-original-title="Show / hide filter"><span class="sr-only">${Show / hide filter}</span></button>
+  <span ng-repeat="crumb in data.breadcrumbs track by crumb.value">
+    <a href="javascript:void(0)" ng-if="!$first" class="sp-breadcrumb-link sp-breadcrumb-remove-condition" ng-click="adjustFilter(crumb, true)">&gt;</a>
+    <a href="javascript:void(0)" class="sp-breadcrumb-link" ng-click="adjustFilter(crumb, false)">{{crumb.label}}</a>
+  </span>
+</div>
+
+<div ng-if="data.enable_filter">
+  <span ng-show="showFilter">
+    <sp-widget widget="data.filterWidget"></sp-widget>
+  </span>
+</div>]]></template></sp_widget><sp_container action="INSERT_OR_UPDATE"><background_color/><background_image/><background_style>default</background_style><bootstrap_alt>false</bootstrap_alt><class_name/><container_class_name/><name>Acme Incidents - Container 3</name><order>3</order><sp_page display_value="acme_incidents">b3527efbdb0203003c6ad360cf961965</sp_page><subheader>false</subheader><sys_class_name>sp_container</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2017-11-02 16:56:45</sys_created_on><sys_id>a382363fdb0203003c6ad360cf961912</sys_id><sys_mod_count>1</sys_mod_count><sys_name>Acme Incidents - Container 3</sys_name><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sp_container_a382363fdb0203003c6ad360cf961912</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2017-11-02 19:49:38</sys_updated_on><title/><width>container</width></sp_container><sp_row action="INSERT_OR_UPDATE"><class_name/><order>1</order><sp_column/><sp_container display_value="Acme Incidents - Container 3">a382363fdb0203003c6ad360cf961912</sp_container><sys_class_name>sp_row</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2017-11-02 16:56:50</sys_created_on><sys_id>309236fbdb0203003c6ad360cf961925</sys_id><sys_mod_count>0</sys_mod_count><sys_name>1</sys_name><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sp_row_309236fbdb0203003c6ad360cf961925</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2017-11-02 16:56:50</sys_updated_on></sp_row><sp_column action="INSERT_OR_UPDATE"><class_name/><order>1</order><size>6</size><size_lg/><size_sm/><size_xs/><sp_row display_value="1">309236fbdb0203003c6ad360cf961925</sp_row><sys_class_name>sp_column</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2017-11-02 16:56:50</sys_created_on><sys_id>30927e3fdb0203003c6ad360cf9619c1</sys_id><sys_mod_count>0</sys_mod_count><sys_name>1</sys_name><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sp_column_30927e3fdb0203003c6ad360cf9619c1</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2017-11-02 16:56:50</sys_updated_on></sp_column><sp_instance_vlist action="INSERT_OR_UPDATE"><active>true</active><class_name/><color>default</color><css/><display_field>number</display_field><field_list/><filter/><glyph/><id/><maximum_entries>10</maximum_entries><order>0</order><order_by/><order_direction>asc</order_direction><roles/><short_description/><size>md</size><sp_column display_value="1">30927e3fdb0203003c6ad360cf9619c1</sp_column><sp_page/><sp_widget display_value="My Simple List">55350777db4203003c6ad360cf961946</sp_widget><sys_class_name>sp_instance_vlist</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2017-11-02 18:21:32</sys_created_on><sys_id>9df5cf77db4203003c6ad360cf96199d</sys_id><sys_mod_count>2</sys_mod_count><sys_name/><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sp_instance_vlist_9df5cf77db4203003c6ad360cf96199d</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2017-11-02 19:49:38</sys_updated_on><table>incident</table><title/><url/><widget_parameters><![CDATA[{
+	"always_show": {
+		"value": "",
+		"displayValue": ""
+	},
+	"panel_body_height": {
+		"value": "",
+		"displayValue": ""
+	},
+	"image_field": {
+		"value": "",
+		"displayValue": ""
+	},
+	"secondary_fields": {
+		"value": "short_description,priority,category,assigned_to,state",
+		"displayValue": "short_description,priority,category,assigned_to,state"
+	},
+	"rounded_images": {
+		"value": "",
+		"displayValue": ""
+	},
+	"list_page": {
+		"value": "",
+		"displayValue": ""
+	},
+	"hide_footer": {
+		"value": "",
+		"displayValue": ""
+	},
+	"view": {
+		"value": "",
+		"displayValue": ""
+	}
+}]]></widget_parameters></sp_instance_vlist><sys_translated_text action="delete_multiple" query="documentkey=9df5cf77db4203003c6ad360cf96199d"/><sp_widget action="INSERT_OR_UPDATE"><client_script><![CDATA[function ($scope, $location, $rootScope, spUtil, $interpolate) {
+	var c = this;
+	c.data.tableChosen = false; // default to false
+
+	this.data.filterText = "";
+	this.showFilter = false;
+
+	this.onClick = function($event, item, url, action) {
+		$event.stopPropagation();
+		$event.preventDefault();
+		if (typeof url == "string") {
+			var urlExp = $interpolate(url);
+			url = urlExp(item);
+			$location.url(url);
+		} else if (url && typeof url == "object")
+			$location.search(url);
+		else {
+			var evt = {};
+			evt.url = url;
+			evt.table = item.className;
+			evt.sys_id = item.sys_id;
+			evt.record = item;
+			evt.rectangle_id = c.options.sys_id;
+			evt.action = action;
+			// put out the selection with simple list "sl_" prefix
+			$location.search('sl_sys_id', evt.sys_id);
+			$location.search('sl_table', evt.table);
+			$location.search('spa', 1); // spa means "I've got this"
+			$rootScope.$broadcast('$sp.list.click', evt);
+		}
+	};
+
+	if (c.options.table)
+		spUtil.recordWatch($scope, c.options.table, c.options.filter);
+
+	this.getMaxShownLabel = function(maxEntries, totalCount) {
+		if (totalCount == c.data.maxCount)
+			return "${First [0] of more than [1]}".replace('[0]', maxEntries).replace('[1]', totalCount);
+
+		return "${First [0] of [1]}".replace('[0]', maxEntries).replace('[1]', totalCount);
+	};
+
+	this.seeAllPage = c.options.list_page_dv || 'list';
+	this.targetPageID = (c.options.sp_page) ? "&target_page_id=" + c.options.sp_page : "";
+
+	c.getActionColor = function(action) {
+		return "text-" + action.color;
+	};
+
+	c.update = function update() {
+			c.server.update();
+	}
+
+	c.toggleFilter = function() {
+		c.showFilter = !c.showFilter;
+	}
+
+	// Receive Query from the Filter Breadcrumb Widget
+	$rootScope.$on("query_text_event", function (event, data) {
+		console.log('In My Simple List:  query string received is = ' + data);
+		c.data.newFilter = data;
+		c.server.update();
+	});
+		
+		// Receive chosen Table from Table Selector Widget
+		$rootScope.$on("chosen_table_event", function (event, data) {
+			console.log("In my Simple List:  chosen table received is = " + data);
+			c.data.tableChosen = "true";
+			c.data.chosenTable = data;
+			c.server.update();
+	});
+
+}]]></client_script><controller_as>c</controller_as><css>.panel {
+position: relative;
+}
+
+.panel-heading i {
+  cursor: pointer;
+  position: absolute;
+  padding: 10px;
+  top: 0px;
+  right: 0px;
+  cursor: pointer;
+}
+
+.disabled-filter {
+	color: #A0A0A0;
+}
+
+.list-group-item.ng-enter {
+  transition: all 1s;
+  -webkit-transition: all 1s;
+
+  background-color: #c0dcfa;
+}
+
+.list-group-item.ng-enter-active {
+  background-color: #fff;
+}
+
+.hide-x-overflow {
+  overflow-x: hidden;
+}
+
+.translated-html &gt; p {
+  margin: 0px;
+  padding: 0px;
+}
+
+IMG {
+  max-width: 320px;
+  max-height: 240px;
+}
+
+IMG.img-sm {
+  max-height: 40px;
+  max-width: 40px;
+}
+
+.filter-box {
+  margin-top: 10px;
+}
+
+.panel-footer {
+  .number-shown-label {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 16px;
+    display: inline-block;
+  }
+
+  a {
+    color: inherit;
+  }
+}</css><data_table>sp_instance_vlist</data_table><demo_data/><description/><docs/><field_list>table,display_field,glyph,filter,sp_page,color,size,maximum_entries</field_list><has_preview>false</has_preview><id>my_simple_list</id><internal>false</internal><link/><name>My Simple List</name><option_schema>[{"name":"always_show","label":"Show even when empty","type":"boolean"},{"name":"panel_body_height","label":"List body height","type":"string"},{"name":"image_field","label":"Image field","type":"field_name"},{"name":"secondary_fields","label":"Secondary fields","type":"field_list"},{"name":"rounded_images","label":"Rounded images","type":"boolean"},{"displayValue":"Page","name":"list_page","label":"List page","type":"reference","value":"sp_page","ed":{"reference":"sp_page"}},{"name":"hide_footer","label":"Hide Footer","type":"boolean"},{"displayValue":"UI View","hint":"View to use when target page is a form","name":"view","label":"View","type":"reference","value":"sys_ui_view","ed":{"reference":"sys_ui_view"}}]</option_schema><public>true</public><roles/><script><![CDATA[(function () {
+	// Overwrite options.table with chosen table from upper widget if it's been written
+	if (input.tableChosen) {
+		if (input.tableChosen == 'true') {
+		options.table = input.chosenTable;
+		}
+	}
+	
+	data.filterMsg = gs.getMessage("Filter...");
+	if(gs.nil(options.hide_footer))
+	    options.hide_footer = false;
+    options.hide_footer = (options.hide_footer == "true" || options.hide_footer == true);
+	options.table = $sp.getParameter('t') || options.table;
+	if (!options.table)
+		return;
+
+	var gr = new GlideRecordSecure(options.table); // does ACL checking for us
+	if(!gr.isValid()) {
+		data.isValid = false;
+		return;
+	} else
+		data.isValid = true;
+	// grTemp is used to check isValidField since using GlideRecordSecure fails for date/time fields
+	var grTemp = new GlideRecord(options.table);
+	gr.addEncodedQuery(input.newFilter || options.filter);
+	options.title = options.title || gr.getPlural();
+	options.display_field = $sp.getParameter('f') || options.display_field;
+	if (!options.display_field || !grTemp.isValidField(options.display_field))
+		options.display_field = gr.getDisplayName();
+
+	if (input && input.filterText) {
+		gr.addEncodedQuery(options.display_field + "LIKE" + input.filterText)
+	}
+
+	options.title = options.title || gr.getPlural();
+	options.secondary_fields = options.secondary_fields || "";
+	options.secondary_fields = options.secondary_fields.split(",");
+	if (!options.order_by || !grTemp.isValidField(options.order_by))
+		options.order_by = options.display_field;
+
+	// Set ID of sp_page from option schema
+	if (options.list_page) {
+		var sp_page = GlideRecord('sp_page');
+		if (sp_page.get(options.list_page))
+			options.list_page_dv = sp_page.getDisplayValue('id');
+	}
+
+	// redo query with limit
+	if (options.order_direction == "asc")
+		gr.orderBy(options.order_by);
+	else
+		gr.orderByDesc(options.order_by);
+
+	data.maxCount = 500;
+	gr.setLimit(data.maxCount);
+	gr.query();
+
+	data.count = gr.getRowCount();
+	data.actions = getActions();
+	data.list = [];
+	var recordIdx = 0;
+	while (gr.next()) {
+		if (options.maximum_entries && recordIdx == options.maximum_entries)
+			break;
+
+		var record = {};
+		if (data.actions.length > 0) {
+			var fields = gr.getFields();
+			for (var i = 0; i < fields.size(); i++) {
+				var glideElement = fields.get(i);
+				var name = glideElement.getName();
+				if (name.indexOf("sys_") == -1)
+					record[name] = gr.getValue(name);
+			}
+		}
+
+		record.sys_id = gr.getValue('sys_id');
+		record.className = gr.getRecordClassName();
+		if (options.image_field) {
+			record.image_field = gr.getDisplayValue(options.image_field);
+			if (!record.image_field)
+				record.image_field = "noimage.pngx";
+		}
+
+		if (options.display_field)
+			record.display_field = getField(gr, options.display_field);
+
+		record.secondary_fields = [];
+		options.secondary_fields.forEach(function(f) {
+			record.secondary_fields.push(getField(gr, f));
+		});
+
+		if (options.sp_page) {
+			var view = "sp";
+			if (options.view) {
+				var viewGR = new GlideRecord("sys_ui_view");
+				viewGR.get(options.view);
+				view = viewGR.getValue("name");
+			}
+			record.url = {id: options.sp_page, table: record.className, sys_id: record.sys_id, view: view};
+		} else if (options.url != '')
+			record.url = options.url;
+		else
+			record.url = null;
+
+		data.list.push(record);
+		recordIdx++;
+	}
+
+	function getField(gr, name) {
+		var f = {};
+		f.display_value = gr.getDisplayValue(name);
+		f.value = gr.getValue(name);
+		var ge = gr.getElement(name);
+			if (ge == null)
+				return f;
+
+		f.type = ge.getED().getInternalType()
+		f.label = ge.getLabel();
+		return f;
+	}
+
+	function getActions() {
+		var rl = GlideRecord("sp_vlist_action");
+		rl.addQuery("sp_rectangle_vlist",$sp.getValue("sys_id"));
+		rl.query();
+		var actions = [];
+		while(rl.next()) {
+			var action = {};
+			$sp.getRecordValues(action, rl, "name,glyph,hint,url,color");
+			actions.push(action);
+		}
+		return actions;
+	}
+})()]]></script><servicenow>false</servicenow><sys_class_name>sp_widget</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2017-11-02 18:18:15</sys_created_on><sys_id>55350777db4203003c6ad360cf961946</sys_id><sys_mod_count>7</sys_mod_count><sys_name>My Simple List</sys_name><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sp_widget_55350777db4203003c6ad360cf961946</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2017-11-02 20:31:15</sys_updated_on><template><![CDATA[<div class="panel panel-{{::c.options.color}} b" ng-if="c.data.isValid && (c.options.always_show || c.data.filterText || c.data.list.length)">
+  <div class="panel-heading" ng-if="::!c.options.hide_header">
+    <h2 class="h4 panel-title">
+      <span ng-if="c.options.glyph">
+        <fa name="{{::c.options.glyph}}" />
+      </span>{{::c.options.title}}</h2>
+    <!-- <i class="fa fa-filter" ng-click="c.toggleFilter()" ng-class="{'disabled-filter': !c.showFilter}"></i> -->
+    <div ng-show="c.showFilter">
+      <input aria-label="${Filter}" ng-model="c.data.filterText" ng-model-options="{debounce: 300}" sn-focus="c.showFilter" placeholder="{{::data.filterMsg}}" ng-change="c.update()" class="form-control input-sm filter-box">
+    </div>
+  </div>
+  <ul class="list-group hide-x-overflow" style="max-height: {{::c.options.panel_body_height || 'none'}}; overflow-y: auto;">
+    <li ng-if="c.data.list.length > 0" ng-repeat="item in c.data.list track by item.sys_id" class="list-group-item">
+      <a ng-click="c.onClick($event, item, item.url, {})" href="javascript:void(0)" >
+        <span ng-repeat="action in c.data.actions" href="" ng-click="c.onClick($event, item, action.url, action)" ng-if="action.glyph"
+              class="list-action l-h-40 pull-right">
+          <fa name="{{action.glyph}}" ng-class="c.getActionColor(action)" />
+        </span>
+        <span ng-if="c.options.image_field" class="pull-left m-r"
+              ng-class="{'avatar': c.options.rounded_images, 'thumb-sm': c.options.rounded_images}">
+          <img ng-src="{{item.image_field}}" alt="..." class="img-sm" ng-class="{'img-circle': c.options.rounded_images}">
+        </span>
+        <div>
+          <div ng-switch on="item.display_field.type" ng-class="{'l-h-40': !item.secondary_fields.length}">
+            <span class="translated-html" ng-switch-when="translated_html" ng-bind-html="item.display_field.value"></span>
+            <div ng-switch-default>{{item.display_field.display_value}}</div>
+          </div>
+          <small class="text-muted" ng-repeat="f in item.secondary_fields" aria-live="polite">
+            <span ng-if="!$first"> • </span>
+            <span ng-switch="f.type" title="{{::f.label}}">
+              <span ng-switch-when="glide_date"><sn-time-ago timestamp="::f.value" /></span>
+              <span ng-switch-when="glide_date_time"><sn-time-ago timestamp="::f.value" /></span>
+              <span ng-switch-default="">{{f.display_value}}</span>
+            </span>
+          </small>
+        </div>
+      </a>
+    </li>
+     <div ng-if="!c.data.list.length" class="list-group-item">
+     ${No records found}
+    </div>
+  </ul>
+  <div class="panel-footer" ng-if="!c.options.hide_footer && c.options.maximum_entries && c.data.count > c.options.maximum_entries">
+    <div class="h4 number-shown-label">{{c.getMaxShownLabel(c.options.maximum_entries, c.data.count)}}</div>
+    <a class="pull-right" ng-href="?id={{c.seeAllPage}}&table={{c.options.table}}&filter={{c.options.filter}}{{c.targetPageID}}">${View all}</a>
+  </div>
+</div>]]></template></sp_widget><sp_column action="INSERT_OR_UPDATE"><class_name/><order>2</order><size>6</size><size_lg/><size_sm/><size_xs/><sp_row display_value="1">309236fbdb0203003c6ad360cf961925</sp_row><sys_class_name>sp_column</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2017-11-02 16:56:50</sys_created_on><sys_id>74927e3fdb0203003c6ad360cf9619c2</sys_id><sys_mod_count>0</sys_mod_count><sys_name>2</sys_name><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sp_column_74927e3fdb0203003c6ad360cf9619c2</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2017-11-02 16:56:50</sys_updated_on></sp_column><sp_instance action="INSERT_OR_UPDATE"><active>true</active><class_name/><color>default</color><css/><glyph/><id/><order>0</order><roles/><short_description/><size>md</size><sp_column display_value="2">74927e3fdb0203003c6ad360cf9619c2</sp_column><sp_widget display_value="Form">fd1f4ec347730200ba13a5554ee490c0</sp_widget><sys_class_name>sp_instance</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2017-11-02 16:57:14</sys_created_on><sys_id>aea2be3fdb0203003c6ad360cf96197d</sys_id><sys_mod_count>2</sys_mod_count><sys_name/><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sp_instance_aea2be3fdb0203003c6ad360cf96197d</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2017-11-02 18:17:17</sys_updated_on><title/><url/><widget_parameters><![CDATA[{
+	"disableUIActions": {
+		"value": "",
+		"displayValue": ""
+	},
+	"showFormView": {
+		"value": "true",
+		"displayValue": "true"
+	},
+	"omitHeaderOptions": {
+		"value": "",
+		"displayValue": ""
+	}
+}]]></widget_parameters></sp_instance><sys_translated_text action="delete_multiple" query="documentkey=aea2be3fdb0203003c6ad360cf96197d"/><m2m_sp_widget_dependency action="INSERT_OR_UPDATE"><sp_dependency display_value="Spectrum Color Picker">726427700b111200b0b02c6317673a6e</sp_dependency><sp_widget display_value="Form">fd1f4ec347730200ba13a5554ee490c0</sp_widget><sys_class_name>m2m_sp_widget_dependency</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2016-01-29 17:50:57</sys_created_on><sys_id>04b82f700b111200b0b02c6317673ad7</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Spectrum.Form</sys_name><sys_package display_value="Service Portal - Core" source="com.glide.service-portal">5ff1c211c581030033995e88a53e1b23</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>m2m_sp_widget_dependency_04b82f700b111200b0b02c6317673ad7</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2016-01-29 17:50:57</sys_updated_on></m2m_sp_widget_dependency><sp_dependency action="INSERT_OR_UPDATE"><module/><name>Spectrum Color Picker</name><page_load>false</page_load><sp_portals/><sys_class_name>sp_dependency</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2016-01-29 17:32:25</sys_created_on><sys_id>726427700b111200b0b02c6317673a6e</sys_id><sys_mod_count>1</sys_mod_count><sys_name>Spectrum Color Picker</sys_name><sys_package display_value="Service Portal - Core" source="com.glide.service-portal">5ff1c211c581030033995e88a53e1b23</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sp_dependency_726427700b111200b0b02c6317673a6e</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2016-01-29 17:51:12</sys_updated_on></sp_dependency><m2m_sp_dependency_css_include action="INSERT_OR_UPDATE"><order>100</order><sp_css_include display_value="spectrum.css">dcc467700b111200b0b02c6317673a83</sp_css_include><sp_dependency display_value="Spectrum Color Picker">726427700b111200b0b02c6317673a6e</sp_dependency><sys_class_name>m2m_sp_dependency_css_include</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2016-01-29 17:34:20</sys_created_on><sys_id>b8e467700b111200b0b02c6317673a86</sys_id><sys_mod_count>0</sys_mod_count><sys_name>spectrum.css.</sys_name><sys_package display_value="Service Portal - Core" source="com.glide.service-portal">5ff1c211c581030033995e88a53e1b23</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>m2m_sp_dependency_css_include_b8e467700b111200b0b02c6317673a86</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2016-01-29 17:34:20</sys_updated_on></m2m_sp_dependency_css_include><sp_css_include action="INSERT_OR_UPDATE"><name>spectrum.css</name><source>url</source><sp_css/><sys_class_name>sp_css_include</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2016-01-29 17:34:20</sys_created_on><sys_id>dcc467700b111200b0b02c6317673a83</sys_id><sys_mod_count>0</sys_mod_count><sys_name>spectrum.css</sys_name><sys_package display_value="Service Portal - Core" source="com.glide.service-portal">5ff1c211c581030033995e88a53e1b23</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sp_css_include_dcc467700b111200b0b02c6317673a83</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2016-01-29 17:34:20</sys_updated_on><url>/styles/spectrum.css</url></sp_css_include><m2m_sp_dependency_js_include action="INSERT_OR_UPDATE"><order>100</order><sp_dependency display_value="Spectrum Color Picker">726427700b111200b0b02c6317673a6e</sp_dependency><sp_js_include display_value="/scripts/lib/spectrum.js">ec8467700b111200b0b02c6317673a17</sp_js_include><sys_class_name>m2m_sp_dependency_js_include</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2016-01-29 17:33:41</sys_created_on><sys_id>03b467700b111200b0b02c6317673a0b</sys_id><sys_mod_count>0</sys_mod_count><sys_name/><sys_package display_value="Service Portal - Core" source="com.glide.service-portal">5ff1c211c581030033995e88a53e1b23</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>m2m_sp_dependency_js_include_03b467700b111200b0b02c6317673a0b</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2016-01-29 17:33:41</sys_updated_on></m2m_sp_dependency_js_include><sp_js_include action="INSERT_OR_UPDATE"><display_name>/scripts/lib/spectrum.js</display_name><source>url</source><sys_class_name>sp_js_include</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2016-01-29 17:33:41</sys_created_on><sys_id>ec8467700b111200b0b02c6317673a17</sys_id><sys_mod_count>4</sys_mod_count><sys_name>/scripts/lib/spectrum.js</sys_name><sys_package display_value="Service Portal - Core" source="com.glide.service-portal">5ff1c211c581030033995e88a53e1b23</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_ui_script/><sys_update_name>sp_js_include_ec8467700b111200b0b02c6317673a17</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2016-02-26 16:54:45</sys_updated_on><url>/scripts/lib/spectrum.js</url></sp_js_include><m2m_sp_widget_dependency action="INSERT_OR_UPDATE"><sp_dependency display_value="sp_codemirror_includes">016f19255b301200e39fc7ad31f91abd</sp_dependency><sp_widget display_value="Form">fd1f4ec347730200ba13a5554ee490c0</sp_widget><sys_class_name>m2m_sp_widget_dependency</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2016-01-06 19:29:54</sys_created_on><sys_id>69c2a5655b301200e39fc7ad31f91a62</sys_id><sys_mod_count>2</sys_mod_count><sys_name>sp_codemirror_includes.Form</sys_name><sys_package display_value="Service Portal - Core" source="com.glide.service-portal">5ff1c211c581030033995e88a53e1b23</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>m2m_sp_widget_dependency_69c2a5655b301200e39fc7ad31f91a62</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2016-03-09 23:17:49</sys_updated_on></m2m_sp_widget_dependency><sp_dependency action="INSERT_OR_UPDATE"><module/><name>sp_codemirror_includes</name><page_load>false</page_load><sp_portals/><sys_class_name>sp_dependency</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2016-01-06 19:15:33</sys_created_on><sys_id>016f19255b301200e39fc7ad31f91abd</sys_id><sys_mod_count>1</sys_mod_count><sys_name>sp_codemirror_includes</sys_name><sys_package display_value="Service Portal - Core" source="com.glide.service-portal">5ff1c211c581030033995e88a53e1b23</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sp_dependency_016f19255b301200e39fc7ad31f91abd</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2016-03-09 22:33:37</sys_updated_on></sp_dependency><m2m_sp_dependency_css_include action="INSERT_OR_UPDATE"><order>100</order><sp_css_include display_value="sp_codemirror_includes.css">96caf9e15b301200e39fc7ad31f91ad9</sp_css_include><sp_dependency display_value="sp_codemirror_includes">016f19255b301200e39fc7ad31f91abd</sp_dependency><sys_class_name>m2m_sp_dependency_css_include</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2016-01-06 21:17:23</sys_created_on><sys_id>7b5bf9e15b301200e39fc7ad31f91ab4</sys_id><sys_mod_count>2</sys_mod_count><sys_name>sp_codemirror_includes.css.sp_codemirror_includes</sys_name><sys_package display_value="Service Portal - Core" source="com.glide.service-portal">5ff1c211c581030033995e88a53e1b23</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>m2m_sp_dependency_css_include_7b5bf9e15b301200e39fc7ad31f91ab4</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2016-03-09 23:10:57</sys_updated_on></m2m_sp_dependency_css_include><sp_css_include action="INSERT_OR_UPDATE"><name>sp_codemirror_includes.css</name><source>url</source><sp_css/><sys_class_name>sp_css_include</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2016-01-06 21:17:22</sys_created_on><sys_id>96caf9e15b301200e39fc7ad31f91ad9</sys_id><sys_mod_count>1</sys_mod_count><sys_name>sp_codemirror_includes.css</sys_name><sys_package display_value="Service Portal - Core" source="com.glide.service-portal">5ff1c211c581030033995e88a53e1b23</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sp_css_include_96caf9e15b301200e39fc7ad31f91ad9</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2016-03-09 22:35:12</sys_updated_on><url>/styles/sp_codemirror_includes.css</url></sp_css_include><m2m_sp_dependency_js_include action="INSERT_OR_UPDATE"><order>100</order><sp_dependency display_value="sp_codemirror_includes">016f19255b301200e39fc7ad31f91abd</sp_dependency><sp_js_include display_value="/scripts/libs/sp_codemirror_includes.js">438fd9255b301200e39fc7ad31f91a62</sp_js_include><sys_class_name>m2m_sp_dependency_js_include</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2016-01-06 19:16:32</sys_created_on><sys_id>6dbf19255b301200e39fc7ad31f91ac3</sys_id><sys_mod_count>1</sys_mod_count><sys_name>sp_codemirror_includes./scripts/libs/sp_codemirror_includes.js</sys_name><sys_package display_value="Service Portal - Core" source="com.glide.service-portal">5ff1c211c581030033995e88a53e1b23</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>m2m_sp_dependency_js_include_6dbf19255b301200e39fc7ad31f91ac3</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2016-03-09 23:12:13</sys_updated_on></m2m_sp_dependency_js_include><sp_js_include action="INSERT_OR_UPDATE"><display_name>/scripts/libs/sp_codemirror_includes.js</display_name><source>url</source><sys_class_name>sp_js_include</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2016-01-06 19:16:32</sys_created_on><sys_id>438fd9255b301200e39fc7ad31f91a62</sys_id><sys_mod_count>9</sys_mod_count><sys_name>/scripts/libs/sp_codemirror_includes.js</sys_name><sys_package display_value="Service Portal - Core" source="com.glide.service-portal">5ff1c211c581030033995e88a53e1b23</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_ui_script/><sys_update_name>sp_js_include_438fd9255b301200e39fc7ad31f91a62</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2016-03-09 23:15:56</sys_updated_on><url>/scripts/libs/sp_codemirror_includes.js</url></sp_js_include><sp_widget action="INSERT_OR_UPDATE"><client_script><![CDATA[function ($scope, $rootScope, $timeout, spUtil, $location, $window, nowAttachmentHandler, $log, spAriaUtil) {
+	$scope.mandatory = [];
+	$scope.errorMessages = [];
+	$scope.data.show_sql = false;
+	$scope.saveButtonSuffix = spUtil.getAccelerator('s');
+	$scope.adminMenu = {
+		encodedPageUrl: encodeURIComponent($location.url()),
+		getClientScriptCount: function() {
+			var count = 0;
+			if ($scope.data.f.client_script) {
+				count += $scope.data.f.client_script.onChange.length;
+				count += $scope.data.f.client_script.onLoad.length;
+				count += $scope.data.f.client_script.onSubmit.length;
+			}
+			return count;
+		}
+	};
+
+	$scope.getUIActions = function(type) {
+		if ($scope.data.disableUIActions)
+			return [];
+		if (type) {
+			return $scope.data.f._ui_actions.filter(function(action) {
+				//We handle the primary action button separately.
+				return !action.primary && action['is_' + type];
+			});
+		} else {
+			return $scope.data.f._ui_actions;
+		}
+	}
+
+	$scope.getPrimaryAction = function() {
+		var primaryActions = $scope.data.f._ui_actions.filter(function(action) {
+			return action.primary;
+		});
+		return (primaryActions.length) ? primaryActions[0] : null;
+	}
+
+	$scope.getUIActionContextMenu = function(event) {
+		var menu = [];
+		if (event.ctrlKey)
+			return menu;
+
+		var contextActions = $scope.getUIActions('context');
+		contextActions.forEach(function(action) {
+			menu.push([action.name, function() {
+				$scope.triggerUIAction(action);
+			}]);
+		});
+
+		if (contextActions.length > 0)
+			menu.push(null);
+		menu.push([$scope.data.exportPDFMsg, function() {exportPDF("");}]);
+		menu.push([$scope.data.exportPDFLandMsg, function() {exportPDF('true');}]);
+
+		return menu;
+	}
+
+	function exportPDF(landscape) {
+		$window.open("/" + $scope.data.f.table + ".do?PDF&landscape=" + landscape + "&sys_id=" + $scope.data.sys_id + "&sysparm_view=" + $scope.data.f.view);
+	}
+
+	//trigger the primary UI Action on save (if there is one)
+	var deregister = $scope.$on('$sp.save', function() {
+		var primaryAction = $scope.getPrimaryAction();
+		if (primaryAction)
+			$scope.triggerUIAction(primaryAction);
+	});
+	$scope.$on('$destroy', function() {deregister()});
+
+	$scope.triggerUIAction = function(action) {
+		if ($scope.data.disableUIActions && !action.primary) {
+			return;
+		}
+
+		var activeElement = document.activeElement;
+		if (activeElement) {
+			activeElement.blur();
+		}
+
+		$timeout(function() {
+			if (g_form) {
+				g_form.submit(action.action_name || action.sys_id);
+			}
+		});
+	}
+
+	$scope.$on("spModel.uiActionComplete", function(evt, response) {
+		var sysID = (response.isInsert) ? response.sys_id : $scope.data.sys_id;
+		loadForm($scope.data.table, sysID).then(constructResponseHandler(response));
+	});
+
+	function constructResponseHandler(response) {
+		return function() {
+			var message;
+			var eventName = "sp.form.record.updated";
+			if (response.isInsert) {
+				message = $scope.data.recordAddedMsg;
+				var search = $location.search();
+				search.sys_id = response.sys_id;
+				search.spa = 1;
+				$location.search(search).replace();
+			} else
+				message = $scope.data.updatedMsg;
+
+			$scope.data.hideRelatedLists = hideRelatedLists();
+			$scope.$emit(eventName, $scope.data.f._fields);
+			$rootScope.$broadcast(eventName, $scope.data.f._fields);
+			$scope.status = message;
+			spUtil.addTrivialMessage(message);
+			$timeout(clearStatus, 2000);
+		}
+	}
+
+	var ctrl = this;
+	// switch forms
+	var unregister = $scope.$on('$sp.list.click', onListClick);
+	$scope.$on("$destroy", function() {
+		unregister();
+	})
+
+	function onListClick(evt,arg) {
+		loadForm(arg.table, arg.sys_id);
+	}
+
+	function loadForm(table, sys_id){
+		var f = {};
+		$scope.data.table = f.table = table;
+		$scope.data.sys_id = f.sys_id = sys_id;
+		f.view = $scope.data.view;
+		return $scope.server.update().then(setupAttachmentHandler);
+	}
+
+	function openRelatedList(e, queryString){
+		// todo: Open this in a modal
+		$location.search(queryString);
+		e.preventDefault();
+	}
+
+	$scope.$on('spModel.fields.rendered', function() {
+		if (ctrl.panels)
+			ctrl.panels.removeClass('shift-out').addClass('shift-in');
+	});
+
+	var g_form;
+	$scope.$on('spModel.gForm.initialized', function(e, gFormInstance) {
+		if (gFormInstance.getTableName() == $scope.data.f.table)
+			g_form = gFormInstance;
+	});
+
+	// Show or hide related lists
+	$scope.$watch('data.f._related_lists', function(){
+		$scope.data.hideRelatedLists = hideRelatedLists();
+	}, true);
+
+	function hideRelatedLists() {
+		if (!$scope.data.f._related_lists)
+			return true;
+
+		if ($scope.options.hideRelatedLists == true)
+			return true;
+
+		if ($scope.data.sys_id == '-1')
+			return true;
+
+		// If all related lists are visible=false then hide
+		if ($scope.data.f._related_lists.length > 0) {
+			for (var i in $scope.data.f._related_lists) {
+				var list = $scope.data.f._related_lists[i];
+				if (list.visible) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	function clearStatus() {
+		$scope.status = "";
+	}
+
+	function setupAttachmentHandler(){
+		$scope.attachmentHandler = new nowAttachmentHandler(appendDone, appendError);
+
+		$timeout(function() {
+			var sizeLimit = 1024 * 1024 * 24; // 24MB
+			$scope.attachmentHandler.setParams($scope.data.table, $scope.data.f._attachmentGUID, sizeLimit);
+		});
+
+		$scope.$on('dialog.upload_too_large.show', function(e){
+			$log.error($scope.data.largeAttachmentMsg);
+			spUtil.addErrorMessage($scope.data.largeAttachmentMsg);
+		});
+	}
+	setupAttachmentHandler();
+
+	function appendDone() {
+		// don't know here whether upload succeeded, so can't show msg either way
+		$scope.$broadcast("sp.attachments.update", $scope.data.f._attachmentGUID);
+		spAriaUtil.sendLiveMessage($scope.data.attachmentSuccessMsg);
+	}
+
+	function appendError(error) {
+		$scope.errorMessages.push(error);
+		spUtil.addErrorMessage(error.msg + error.fileName);
+	}
+}]]></client_script><controller_as/><css>.btn-form-menu {
+	vertical-align: inherit;
+  padding: inherit;
+  background: none;
+}
+
+.panel-title {
+  word-wrap: break-word;
+}
+
+.comment {
+	font-weight: bold;
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+.mce-panel, .mce-btn {
+	background-image: none;
+	background-color: #f0f3f4;
+}
+
+.action-btn {
+  margin-right: 5px;
+}
+
+.timeline-container {
+   max-height: 50vh;
+   height: 100%;
+   overflow-y: auto;
+}
+
+.panel .panel {
+    height: auto !important;
+}
+
+.attachment-button {
+  .glyphicon-paperclip {
+    font-size: 18px;
+  }
+}
+
+.empty-state-wrapper {
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 10vh 20px 20px;
+
+  .empty-state {
+    border: 1px solid #e7e9eb;
+    border-radius: 10px;
+    max-width: 700px;
+    padding: 30px 40px 20px;
+    position: relative;
+
+    .empty-state-badge {
+      top: -36px;
+      left: 50%;
+      position: absolute;
+      height: 72px;
+      width: 72px;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      border-radius: 100%;
+      color: #ffffff;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      font-size: 40px;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      margin-left: -36px;
+      text-align: center;
+    }
+
+    .empty-state-header {
+      font-size: 30px;
+      text-align: center;
+      color: #343d47;
+    }
+
+    .empty-state-content {
+      ul {
+        list-style: disc outside;
+        margin: 0 0 10px 0;
+        padding: 0 0 0 30px;
+      }
+    }
+  }
+}</css><data_table>sp_instance</data_table><demo_data/><description/><docs/><field_list/><has_preview>false</has_preview><id>widget-form</id><internal>false</internal><link/><name>Form</name><option_schema>[{"name":"disableUIActions","label":"Disable UI Actions on Form","type":"boolean"},{"name":"showFormView","label":"Display current form view","type":"boolean"},{"name":"omitHeaderOptions","label":"Omit header options icon","type":"boolean"}]</option_schema><public>false</public><roles>snc_external,snc_internal</roles><script><![CDATA[// form functionality - URL parameter driven
+(function($sp, input, data, options, gs) {
+  /* "use strict"; -linter issues */
+  // populate the 'data' variable
+	data.attachmentUploadSuccessMsg = gs.getMessage("Attachment upload was successful");
+	data.recordAddedMsg = gs.getMessage("Record Added");
+	data.updatedMsg = gs.getMessage("updated_uppercase");
+	data.exportPDFMsg = gs.getMessage("Export to PDF");
+	data.exportPDFLandMsg = gs.getMessage("Export to PDF (landscape)");
+	data.addAttachmentMsg = gs.getMessage("Add an attachment");
+	data.largeAttachmentMsg = gs.getMessage("Attached files must be smaller than {0} - please try again", "24MB");
+	data.attachmentSuccessMsg = gs.getMessage("Attachment successfully uploaded");
+	
+	data.isAdmin = gs.hasRightsTo('sp/configure.all/execute', null);
+	data.emptyStateTemplate = options.empty_state_template;
+	data.disableUIActions = options.disableUIActions === "true";
+	data.hideRelatedLists = options.hideRelatedLists || false;
+
+	if (input) {
+		data.table = input.table;
+		data.sys_id = input.sys_id;
+		data.view = input.view;
+		var result = {};
+		if (input._fields) {
+			result = $sp.saveRecord(input.table, input.sys_id, input._fields);
+			data.sys_id = result.sys_id;
+		}
+
+		if (input.sys_id == '-1')
+			data.isNewRecord = true;
+	} else {
+		data.table = options.table || $sp.getParameter("t") || $sp.getParameter("table") || $sp.getParameter("sl_table");
+		data.sys_id = options.sys_id || $sp.getParameter("sys_id") || $sp.getParameter("sl_sys_id");
+		data.view = options.view || $sp.getParameter("v") || $sp.getParameter("view"); // no default
+	}
+
+	data.query = $sp.getParameter("query") || options.query;
+	data.f = {};
+	if (!data.table)
+		return;
+	
+	// Form widget is not a supported way to view an attachment
+	if (data.table == "sys_attachment") {
+		data.tableUnsupported = true;
+		return;
+	}
+
+	if (!GlideTableDescriptor.isValid(data.table))
+		return;
+
+	if (!data.sys_id)
+		return;
+
+	var rec = $sp.getRecord(data.table, data.sys_id);
+	data.isValid = rec.isValid() || data.sys_id == "-1";
+	if (!data.isValid)
+		return;
+
+	data.table = rec.getRecordClassName();
+	data.tableHierarchy = GlideDBObjectManager.getTables(data.table).toArray().join();
+	data.canWrite = rec.canWrite();
+	data.canAttach = data.canWrite && gs.hasRole(gs.getProperty('glide.attachment.role')) && !GlideTableDescriptor.get(data.table).getED().getBooleanAttribute("no_attachment");
+	data.f = $sp.getForm(data.table, data.sys_id, data.query, data.view);
+
+	// Activity formatter is hardcoded to set specific options
+	for (var f in data.f._formatters) {
+		var fm = data.f._formatters[f];
+		if (fm.formatter == "activity.xml") {
+			fm.hardcoded = true;
+			fm.widgetInstance = $sp.getWidget('widget-ticket-conversation',
+																{table: data.table,
+																 sys_id: data.sys_id,
+																 includeExtended: true,
+																 title: "${Activity}",
+																 use_dynamic_placeholder: true,
+																 btnLabel: "${Post}"});
+		} else
+			fm.widgetInstance = $sp.getWidget(fm.widget, data);
+	}
+})($sp, input, data, options, gs);]]></script><servicenow>true</servicenow><sys_class_name>sp_widget</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2015-11-22 21:32:20</sys_created_on><sys_id>fd1f4ec347730200ba13a5554ee490c0</sys_id><sys_mod_count>908</sys_mod_count><sys_name>Form</sys_name><sys_package display_value="Service Portal - Core" source="com.glide.service-portal">5ff1c211c581030033995e88a53e1b23</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sp_widget_fd1f4ec347730200ba13a5554ee490c0</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2017-06-19 15:31:35</sys_updated_on><template><![CDATA[<div ng-if="!data.isValid && !data.emptyStateTemplate" class="panel panel-default">
+  <div class="panel-body wrapper-lg text-center">
+    <span ng-if="!data.tableUnsupported">${Record not found}</span>
+    <span ng-if="data.tableUnsupported">${Form view not supported for requested table}</span>
+  </div>
+</div>
+
+<div ng-if="!data.isValid && data.emptyStateTemplate" class="panel-shift">
+  <div class="empty-state-wrapper panel panel-default" ng-include="data.emptyStateTemplate"></div>
+</div>
+
+<div ng-if="data.isValid" class="panel-shift">
+  <div class="" ng-if="!data.f._view.length && data.hideRelatedLists && data.emptyStateTemplate">
+    <div class="empty-state-wrapper panel panel-default" ng-include="data.emptyStateTemplate"></div>
+  </div>
+
+  <div class="" ng-if="!data.f._view.length && data.hideRelatedLists && !data.emptyStateTemplate">
+    <div class="panel panel-default">
+      <div class="panel-heading"><span class="panel-title">{{data.f.title}}</span> <span ng-if="options.showFormView == 'true' && data.f.view != ''">[{{data.f.view_title}} view]</span></div>
+      <div class="panel-body wrapper-lg text-center">
+        ${No elements to display}
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default" ng-if="data.f._view.length || !data.hideRelatedLists" >
+    <div class="panel-heading" ng-if="data.f.title.length" sp-context-menu="getUIActionContextMenu(event)">
+      	<span class="dropdown m-r-xs" ng-if="(data.isAdmin || getUIActions('context').length > 0) && options.omitHeaderOptions != 'true'">
+            <button aria-label="${Form menu}" class="btn btn-form-menu dropdown-toggle glyphicon glyphicon-menu-hamburger" style="line-height: 1.4em" id="adminMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+            <ul class="dropdown-menu" aria-labelledby="adminMenu">
+              <li ng-if="::data.isAdmin"><a href="/{{data.f.table}}.do?sys_id={{data.f.sys_id}}" target="_blank">${Open in platform}</a></li>
+              <li ng-if="::data.isAdmin" class="dropdown-header">${Configure}</li>
+              <li ng-if="::data.isAdmin"><a href="/slushbucket.do?sysparm_referring_url={{adminMenu.encodedPageUrl}}&sysparm_list={{data.f._sections[0].id}}&sysparm_form=section&sysparm_view={{data.f.view}}" target="_blank">${Form Layout}</a></li>
+              <li ng-if="::data.isAdmin"><a href="/slushbucket.do?sysparm_referring_url={{adminMenu.encodedPageUrl}}&sysparm_list={{data.f.table}}&sysparm_form=related_list&sysparm_view={{data.f.view}}" target="_blank">${Related Lists}</a></li>
+              <li ng-if="::data.isAdmin"><a href="?id=lf&table=sys_ui_policy&filter=table%3D{{data.f.table}}%5EORtableIN{{data.tableHierarchy}}%5Eactive%3Dtrue%5Eui_type%3D1%5EORui_type%3D10" ng-click="openRelatedList($event, {id:'lf', table: 'sys_ui_policy', filter: 'table%3D{{data.f.table}}%5EORtableIN{{data.f.table}},sys_metadata%5Eactive%3Dtrue%5Eui_type%3D1%5EORui_type%3D10'})">${UI Policies} <span class="badge pull-right" ng-if="f.policy.length">{{f.policy.length}}</span></a></li>
+              <li ng-if="::data.isAdmin"><a href="?id=lf&table=sys_script_client&filter=table%3D{{data.f.table}}%5EORtableIN{{data.tableHierarchy}}%5Eactive%3Dtrue%5Eui_type%3D1%5EORui_type%3D10" ng-click="openRelatedList($event, {id: 'lf', table: 'sys_script_client', filter: 'table%3D{{data.f.table}}%5EORtableIN{{data.f.table}},sys_metadata%5Eactive%3Dtrue%5Eui_type%3D1%5EORui_type%3D10'})">${Client Scripts} <span class="badge pull-right" ng-if="adminMenu.getClientScriptCount()">{{adminMenu.getClientScriptCount()}}</span></a></li>
+              <li ng-if="getUIActions('context').length > 0 &&  data.isAdmin" role="separator" class="divider"></li>
+              <li ng-repeat="action in getUIActions('context')"><a href="" ng-click="triggerUIAction(action)">{{action.name}}</a></li>
+              <li ng-if="::data.isAdmin || getUIActions('context').length > 0" role="separator" class="divider"></li>
+              <li><a target="_new" href="/{{data.f.table}}.do?PDF&sys_id={{data.sys_id}}&sysparm_view={{data.f.view}}">${Export to PDF}</a></li>
+              <li><a target="_new" href="/{{data.f.table}}.do?PDF&landscape=true&sys_id={{data.sys_id}}&sysparm_view={{data.f.view}}">${Export to PDF (landscape)}</a></li>
+            </ul>
+        </span>
+      <span class="panel-title" aria-label="{{data.f.title}}">{{data.f.title}}</span> <span ng-if="options.showFormView == 'true' && data.f.view != ''">[{{data.f.view_title}} view]</span>
+      <div ng-if="attachmentHandler && data.canAttach" title="{{::data.addAttachmentMsg}}" class="pull-right attachment-button">
+      	<sp-attachment-button></sp-attachment-button>
+      </div>
+    </div>
+    <div class="panel-body">
+      <!-- performance debug -->
+      <div ng-if="data.show_sql">
+        <div class="comment">
+          <span ng-if="data.f._perf.sql_count">${SQL Statements {{data.f._perf.sql_count}}}, </span>
+          <span>${Time {{data.f._perf.time}}}</span>
+        </div>
+        <div ng-repeat="s in data.f._perf.sql" class="{{s.type}}">
+          {{s.statement}}
+        </div>
+      </div>
+      <!-- attachments -->
+      <sp-attachment-manager table="data.table" sys-id="data.f._attachmentGUID" omit-edit="!data.canAttach"></sp-attachment-manager>
+      <!-- form -->
+      <div>
+        <sp-model form_model="data.f" mandatory="mandatory"></sp-model>
+      </div>
+      <!-- UI Action Links -->
+      <div ng-if="getUIActions('link').length > 0">
+        <label style="margin: 0;">${Related Links}</label>
+        <div ng-repeat="action in getUIActions('link')">
+          <a href ng-click="triggerUIAction(action)">{{action.name}}</a>
+        </div>
+      </div>
+      <!-- related lists -->
+      <div ng-if="!data.hideRelatedLists">
+        <label style="margin: 0">${Related Lists}</label>
+        <div style="margin-bottom: 7px; padding-bottom: 7px; border-bottom: 1px solid #f5f5f5;">
+          <span ng-repeat="rl in data.f._related_lists" ng-if="rl.visible">
+            <a ng-if="rl.type != 'REL'" href="?id=lf&table={{rl.table}}&filter={{rl.field}}%3D{{data.f.sys_id}}&view={{data.f.view}}" ng-click="openRelatedList($event, {id: 'lf', table: '{{rl.table}}', filter: '{{rl.field}}%3D{{data.f.sys_id}}'})">{{rl.plural}}
+              <span class="label label-as-badge label-primary" ng-if="rl.count">{{rl.count}}</span>
+            </a>
+            <a ng-if="rl.type == 'REL'" href="?id=lf&table={{rl.table}}&relationship_id={{rl.relationship_id}}&apply_to={{rl.apply_to}}&apply_to_sys_id={{rl.apply_to_sys_id}}&view={{data.f.view}}" ng-click="openRelatedList($event, {id: 'lf', table: '{{rl.table}}', apply_to: '{{rl.apply_to}}', apply_to_sys_id: '{{rl.apply_to_sys_id}}', relationship_id: '{{rl.relationship_id}}'})">{{rl.label}}
+              <span class="label label-as-badge label-primary" ng-if="rl.count">{{rl.count}}</span>
+            </a>
+            <span ng-if="!$last" style="padding-left: .5em; padding-right: .5em;" aria-hidden="true"> | </span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-footer">
+      <button ng-click="triggerUIAction(action)" ng-repeat="action in getUIActions('button')" class="btn btn-default action-btn">{{action.name}}</button>
+      <span>{{status}}</span>
+      <button ng-if="getPrimaryAction()" type="submit" ng-click="triggerUIAction(getPrimaryAction())" class="btn btn-primary action-btn pull-right">${Save} <span ng-if="saveButtonSuffix">(${{{saveButtonSuffix}}})</span></button>
+      <div style="clear: both;"></div>
+      <div ng-if="mandatory.length" class="alert alert-info" style="margin-top: .5em">
+        <span ng-if="mandatory.length > 0">${Required information} </span>
+        <span ng-repeat="f in mandatory" class="label label-danger" style="margin-right: .5em; display: inline-block;">{{f.label}}</span>
+      </div>
+    </div>
+  </div>
+</div>]]></template></sp_widget></record_update>

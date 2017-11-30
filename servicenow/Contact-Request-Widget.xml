@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<unload unload_date="2017-03-16 19:26:12">
+<sp_widget action="INSERT_OR_UPDATE">
+<client_script><![CDATA[function() {
+	/* widget controller */
+	var c = this;
+
+	c.submitForm = function(isValid) {
+		c.submitted = true;
+
+		if(isValid) {
+			c.server.update().then(function(response) {
+
+				if (response.message == 'success') {
+					c.message = "success";
+					c.message_text = "Thank you for contacting us, we will get back to you as soon as possible.";
+
+				} else if (response.message == 'error') {
+					c.message = "error";
+					c.message_text = "Oops, something went wrong on our side. Apologies!";
+				}
+			});
+
+		}	
+	};
+
+}]]></client_script>
+<controller_as>c</controller_as>
+<css/>
+<data_table>sp_instance</data_table>
+<demo_data/>
+<description/>
+<docs display_value=""/>
+<field_list/>
+<has_preview>false</has_preview>
+<id>contact_request</id>
+<internal>false</internal>
+<link/>
+<name>Contact Request</name>
+<option_schema/>
+<public>false</public>
+<roles/>
+<script><![CDATA[(function() {
+
+	/* Get categories for the "I would like to" select box. Only load them initially */
+	if(!input) {
+		var categories = [];
+
+		var grCategory = new GlideRecord("sys_choice");		
+		grCategory.addQuery("name", "u_contact_requests");
+		grCategory.addQuery("element", "u_category");
+		grCategory.query();
+		while(grCategory.next()) {
+			var category = {};
+			$sp.getRecordDisplayValues(category, grCategory, "sys_id, value, label");
+			categories.push(category);
+		}
+
+		//make categories available to the client
+		data.categories = categories;
+	}
+
+	if(input) {
+		var grContactRequest = new GlideRecord("u_contact_requests");
+		grContactRequest.initialize();
+		grContactRequest.setValue("u_first_name", input.first_name);
+		grContactRequest.setValue("u_last_name", input.last_name);
+		grContactRequest.setValue("u_company", input.company);
+		grContactRequest.setValue("u_email", input.email);
+		grContactRequest.setValue("u_category", input.selected_category.value);
+		grContactRequest.setValue("u_comments", input.comments);
+		var reqId = grContactRequest.insert();
+		if(reqId) {
+			data.message = "success";
+		} else {
+			data.message = "error";
+		}
+		
+	}
+
+
+})();]]></script>
+<servicenow>false</servicenow>
+<sys_class_name>sp_widget</sys_class_name>
+<sys_created_by>frank.schuster</sys_created_by>
+<sys_created_on>2017-03-15 21:06:20</sys_created_on>
+<sys_customer_update>true</sys_customer_update>
+<sys_id>59dab81113edb2003e2250f82244b084</sys_id>
+<sys_mod_count>79</sys_mod_count>
+<sys_name>Contact Request</sys_name>
+<sys_package display_value="Global">global</sys_package>
+<sys_policy/>
+<sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+<sys_scope display_value="Global">global</sys_scope>
+<sys_update_name>sp_widget_59dab81113edb2003e2250f82244b084</sys_update_name>
+<sys_updated_by>frank.schuster</sys_updated_by>
+<sys_updated_on>2017-03-16 19:01:37</sys_updated_on>
+<template><![CDATA[<form class="form-horizontal panel panel-default" name="contactForm" ng-submit="c.submitForm(contactForm.$valid)" novalidate>
+
+  <div class="panel-body">
+    <fieldset>
+
+      <!-- Form Name -->
+      <legend>Form Name</legend>
+
+      <div ng-if="c.message" id="message" class="alert" ng-class="{ 'alert-success': c.message == 'success', 'alert-danger': c.message == 'error'}" role="alert">{{c.message_text}}</div>
+
+      <!-- Text input-->
+      <div class="form-group" ng-class="{ 'has-error' : contactForm.first_name.$invalid && !contactForm.first_name.$pristine || (c.submitted && contactForm.first_name.$invalid) }">
+        <label class="col-md-4 control-label" for="first_name">First Name</label>  
+        <div class="col-md-4">
+          <input id="first_name" ng-model="c.data.first_name" name="first_name" type="text" placeholder="First Name" class="form-control input-md" ng-required="true" >
+          <p ng-show="contactForm.first_name.$invalid && !contactForm.first_name.$pristine || (c.submitted && contactForm.first_name.$invalid)" class="help-block">Your First Name is required.</p>
+        </div>
+      </div>
+
+      <!-- Text input-->
+      <div class="form-group" ng-class="{ 'has-error' : contactForm.last_name.$invalid && !contactForm.last_name.$pristine || (c.submitted && contactForm.last_name.$invalid)}">
+        <label class="col-md-4 control-label" for="last_name">Last Name</label>  
+        <div class="col-md-4">
+          <input id="last_name"  ng-model="c.data.last_name" name="last_name" type="text" placeholder="Last Name" class="form-control input-md" ng-required="true" ng-minlength="3" ng-maxlength="6">
+          <p ng-show="contactForm.last_name.$error.minlength || c.submitted && contactForm.last_name.$error.minlength" class="help-block">Last Name is too short.</p>
+          <p ng-show="contactForm.last_name.$error.maxlength || c.submitted && contactForm.last_name.$error.maxlength" class="help-block">Last Name is too long.</p>
+          <p ng-show="contactForm.last_name.$invalid && c.submitted" class="help-block">Your Last Name is required.</p>    
+        </div>
+      </div>
+
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="company">Company</label>  
+        <div class="col-md-4">
+          <input id="company" ng-model="c.data.company" name="company" type="text" placeholder="Company" class="form-control input-md">
+        </div>
+      </div>
+
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="email">E-Mail</label>  
+        <div class="col-md-4">
+          <input id="email" ng-model="c.data.email" name="email" type="text" placeholder="E-Mail" class="form-control input-md">
+        </div>
+      </div>
+
+      <!-- Select Basic -->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="category">I would like to</label>
+        <div class="col-md-4">
+          <select id="category" name="category" class="form-control" ng-model="c.data.selected_category" ng-options="category.label for category in c.data.categories">
+            <option value="" disabled>-- Choose a Category --</option>         
+          </select>
+        </div>
+      </div>
+
+      <!-- Textarea -->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="comments">Comments</label>
+        <div class="col-md-4">                     
+          <textarea class="form-control" ng-model="c.data.comments" id="comments" name="comments">Comments...</textarea>
+        </div>
+      </div>
+
+      <!-- Button -->
+      <div class="form-group">
+        <button type="submit" id="send_request" class="btn btn-lg btn-primary btn-block">${Send Request}</button>
+      </div>
+
+    </fieldset>
+  </div>
+</form>
+
+]]></template>
+</sp_widget>
+</unload>

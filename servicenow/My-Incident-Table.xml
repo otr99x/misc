@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<unload unload_date="2017-01-08 22:40:16">
+<sp_widget action="INSERT_OR_UPDATE">
+<client_script><![CDATA[function(spUtil, $scope) {
+	/* widget controller */
+	var c = this;
+
+	spUtil.recordWatch($scope, "incident", "active=true", function(name, data) {
+		//If there is a new record we want to re-render our list (which is simply executing the server script again)
+		console.log(name);
+		console.log(data);
+		c.recordWatchActive = true;
+		c.recordUpdateTime = data.record.sys_updated_on.display_value;
+		c.recordAction = data.action;
+		c.recordNumber = data.display_value;
+		c.server.update();
+	});
+
+	c.fieldStyles = function(field, fieldVal) {
+
+		if(field == "priority") {
+			return {
+				'redColor': fieldVal == '1 - Critical',
+				'yellowColor': fieldVal == '2 - High',
+				'greenColor': fieldVal == '3 - Moderate' || fieldVal == '4 - Low' || fieldVal == '5 - Planning'
+			};
+		}
+	}
+}
+]]></client_script>
+<controller_as>c</controller_as>
+<css>.redColor {
+  background-color: red;
+  color: #fff;
+}
+
+.greenColor {
+  background-color: green;
+  color: #fff;
+}
+
+.yellowColor {
+  background-color: yellow;
+  color: #000;
+}</css>
+<data_table>sp_instance</data_table>
+<demo_data/>
+<description/>
+<docs display_value=""/>
+<field_list/>
+<has_preview>false</has_preview>
+<id>my-incident-table</id>
+<internal>false</internal>
+<link/>
+<name>My Incident Table</name>
+<option_schema/>
+<public>false</public>
+<roles/>
+<script><![CDATA[(function() {
+	/* populate the 'data' object */
+	/* e.g., data.table = $sp.getValue('table'); */
+
+	//Initialize the 'incidentsArr' array in the data object
+	data.incidentsArr = [];
+
+	//Iterate over the Incident table to retrieve all active incidents ordered by number (descending - newest ones first)
+	var grIncident = new GlideRecord("incident");
+	grIncident.addActiveQuery();
+	grIncident.orderByDesc("number");
+	grIncident.query();
+
+	//We will use the fields array for ng-repeat on the <tr> level since we want to have all <tr>'s created automatically instead of manually assigning values
+	data.fields = ["number", "short_description", "caller_id", "state", "priority", "sys_created_on"];
+	
+	//make use of the $sp API and get all field labels for the provided fields
+	data.labels = $sp.getFields(grIncident, 'number,short_description,caller_id,state,priority,sys_created_on');
+
+	while(grIncident.next()) {
+		var incident = {};
+		
+		//get all display values for the fields below and write them into the incident object
+		$sp.getRecordDisplayValues(incident, grIncident, 'number,short_description,caller_id,state,priority,sys_created_on');
+		
+		//get the value for sys_id and also write it into the incident object
+		$sp.getRecordValues(incident,grIncident,'sys_id');
+
+		//push the whole hrCase object into the incident array
+		data.incidentsArr.push(incident);
+	}
+
+	//log the data object to the browser console, so we can click through it and see our results
+	$sp.log(data);
+	
+	return data;
+
+})();
+]]></script>
+<servicenow>false</servicenow>
+<sys_class_name>sp_widget</sys_class_name>
+<sys_created_by>frank.schuster</sys_created_by>
+<sys_created_on>2017-01-08 21:41:27</sys_created_on>
+<sys_customer_update>true</sys_customer_update>
+<sys_id>1cf9cd8c4f5cf600c664c0818110c758</sys_id>
+<sys_mod_count>20</sys_mod_count>
+<sys_name>My Incident Table</sys_name>
+<sys_package display_value="Global">global</sys_package>
+<sys_policy/>
+<sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+<sys_scope display_value="Global">global</sys_scope>
+<sys_update_name>sp_widget_1cf9cd8c4f5cf600c664c0818110c758</sys_update_name>
+<sys_updated_by>frank.schuster</sys_updated_by>
+<sys_updated_on>2017-01-08 22:39:46</sys_updated_on>
+<template><![CDATA[<!-- Table with AngularJS  -->
+<div class="panel panel-primary">
+  <div class="panel-heading">Panel heading</div>
+   <div class="panel-body">
+    <p>This is a list of active Incidents.</p>
+     <div ng-if="c.recordWatchActive">
+       <h3> Record Watch Results </h3>
+       <p><strong>Last Update:</strong> {{c.recordUpdateTime}} </p>
+       <p><strong>Action:</strong> {{c.recordAction}} </p>
+       <p><strong>Incident Number:</strong> {{c.recordNumber}} </p>
+     </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th ng-repeat="fieldLabel in data.labels">{{fieldLabel.label}}</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="incident in data.incidentsArr">
+          <td ng-repeat="field in data.fields" ng-class="c.fieldStyles(field, incident[field])">{{incident[field]}}</td>
+
+        </tr>        
+      </tbody>
+    </table>
+  </div>
+</div>
+
+]]></template>
+</sp_widget>
+</unload>

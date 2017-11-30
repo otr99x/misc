@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<unload unload_date="2017-11-02 15:02:24">
+<sp_widget action="INSERT_OR_UPDATE">
+<client_script><![CDATA[function() {
+	/* widget controller */
+	var c = this;
+
+	c.callWidget = function() {
+		//Emit the event up the tree into the $rootScope element
+		$rootScope.$emit("widget_event_test", c.inputField);
+	};
+}]]></client_script>
+<controller_as>c</controller_as>
+<css/>
+<data_table>sp_instance</data_table>
+<demo_data/>
+<description/>
+<docs display_value=""/>
+<field_list/>
+<has_preview>false</has_preview>
+<id>cross_scope_comm_1</id>
+<internal>false</internal>
+<link/>
+<name>Cross Scope Comm 1</name>
+<option_schema/>
+<public>false</public>
+<roles/>
+<script><![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]></script>
+<servicenow>false</servicenow>
+<sys_class_name>sp_widget</sys_class_name>
+<sys_created_by>frank.schuster</sys_created_by>
+<sys_created_on>2017-11-01 19:04:21</sys_created_on>
+<sys_customer_update>false</sys_customer_update>
+<sys_id>72260ea7dbca8b0078a3d311ce961942</sys_id>
+<sys_mod_count>19</sys_mod_count>
+<sys_name>Cross Scope Comm 1</sys_name>
+<sys_package display_value="Global" source="global">global</sys_package>
+<sys_policy/>
+<sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+<sys_scope display_value="Global">global</sys_scope>
+<sys_update_name>sp_widget_72260ea7dbca8b0078a3d311ce961942</sys_update_name>
+<sys_updated_by>frank.schuster</sys_updated_by>
+<sys_updated_on>2017-11-02 15:01:06</sys_updated_on>
+<template><![CDATA[<div>
+  <!-- your widget template -->
+  <input type="text" ng-model="c.inputField" />
+  <button type="button" ng-click="c.callWidget()">
+    Click me
+  </button>
+</div>
+]]></template>
+</sp_widget>
+</unload>
