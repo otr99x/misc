@@ -1,0 +1,60 @@
+<div>
+<!-- your widget template -->
+  <table class="table table-sm">
+    <tbody>
+      <tr>
+        <th>Emails Sent in last </th>
+        <td><input ng-model='c.data.hoursOfEmail'>hours</td>
+      </tr>
+      <tr>
+        <th>subject contains :</th>
+        <td><input ng-model='c.data.subjectContainsText'></td>
+      </tr>
+      <tr>
+        <th>body contains : </th>
+        <td><input ng-model='c.data.bodyContainsText'></td>
+      </tr>
+      <tr>
+        <th>recipient contains : </th>
+        <td><input ng-model='c.data.recipientsContainsText'></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div>
+    Total emails : {{c.data.emailItems.length}} <button ng-click='c.update()'>update</button><button ng-click='c.reset()'>reset</button>
+  </div>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">date sent</th>
+      <th scope="col">recipients</th>
+      <th scope="col">subject</th>
+      <th scope="col">body</th>
+    </tr>
+  </thead>
+    <tbody>
+      <tr ng-repeat='email in c.data.emailItems' ng-click='c.setSelected(email)' ng-class="{'selected': email === c.selectedEmail}">
+        <th scope="row">{{email.created}}</th>
+        <td>{{email.recipients}}</td>
+        <td>{{email.subject}}</td>
+        <td>{{email.shortbody}}</td>
+      </tr>
+    </tbody>
+</table>  
+
+ <script type="text/ng-template" id="modalTemplate">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 class="panel-title">{{c.selectedEmail.subject}}</h4>
+  		</div>
+      {{c.selectedEmail.recipients}} : {{c.selectedEmail.created}}
+		<div class="panel-body wrapper-xl" ng-bind-html="c.selectedEmail.body">
+  		</div>
+		<div class="panel-footer text-right">
+			<button class="btn btn-primary" ng-click="c.closeModal()">close</button>
+		</div>
+	</div>
+</script> 
+  
+</div>
